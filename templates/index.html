@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2> Welcome to Moldy Cheese! </h2>
+<h3>Here you can leave reviews on recent movies you have seen.</h3>
+
+<div>
+<form method="POST" action="http://localhost:5000/movie_form">
+    {{ form.movie.label }}{{ form.movie() }}<br>
+    {{ form.reason.label }}{{ form.reason() }}<br>
+    {{ form.content.label }}{{ form.content() }}<br>
+    <br>
+	{{ form.submit() }}
+</form>
+</div>
+
+<div>
+{% for message in get_flashed_messages() %}
+    <strong>{{ message }}</strong>
+{% endfor %}
+</div>
+
+{% endblock %}

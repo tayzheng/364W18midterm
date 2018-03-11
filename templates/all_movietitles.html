@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div>
+{% for message in get_flashed_messages() %}
+    <strong>*** {{ message }} ***</strong>
+{% endfor %}
+</div>
+
+<ul>
+{% for ti in titles %}
+  <li>{{ ti.title }}</li>
+  <br>
+ <br><br>
+{% endfor %}
+</ul>
+
+
+{% if not all_titles %}
+    There are no saved movie titles to show.
+{% endif %}
+
+
+{% endblock %}

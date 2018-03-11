@@ -1,0 +1,13 @@
+{% block content %}
+
+{% endblock %}
+
+<p>------------</p>
+<h3>Navigation</h3>
+<ul>
+	<li><a href="{{ url_for('index') }}">Go to Name input form.</a></li>
+    <li><a href="{{ url_for('movie_form')}}">Go to Movie input form.</a></li>
+    <li><a href="{{ url_for('fav_movie') }}">See the results for Favorite Movie.</a></li>
+    <li><a href="{{ url_for('all_moviestitles')}}">See all Movies.</a></li>
+    <li><a href="{{ url_for('all_reviews')}}">See all Reviews.</a></li>
+</ul>

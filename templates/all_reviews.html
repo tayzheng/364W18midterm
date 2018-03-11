@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div>
+{% for message in get_flashed_messages() %}
+    <strong>*** {{ message }} ***</strong>
+{% endfor %}
+</div>
+
+<ul>
+{% for re in reviews %}
+    <li><strong>{{ re[1] }}:</strong><br>{{ re[0] }}</li><br><br>
+{% endfor %}
+</ul>
+
+{% if not reviews %}
+    There are no saved reviews to show.
+{% endif %}
+
+
+{% endblock %}
