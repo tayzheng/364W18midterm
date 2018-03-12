@@ -155,34 +155,30 @@ def internal_server_error(e):
 ##custom view functions --------------------------
 @app.route('/all_movies', methods = ['GET'])
 def all_titles():
-    # form = TitleForm()
-    # if request.method == 'GET':
-    #     result = request.args['title']
-    #     url = request.get('http://www.omdbapi.com/?i=tt3896198&apikey=e8f22500'+result).json
-    # return render_template('all_movies.html', titles = Title.query.all())
     response = requests.get('http://www.omdbapi.com/?i=tt3896198&apikey=e8f22500')
     return response.text
 
 @app.route('/movie_form', methods=['GET', 'POST'])
 def movie_form():
     form = MovieForm(request.form)
+
     if form.validate_on_submit():
     movie = form.movie.data
         review = form.review.data
         m = Movie.query.filter_by(movieName=movie).first()
         if m:
-            print("Breed exists")
+            print("movie exists")
         else:
-            m = Movie(breedName=movie)
+            m = Movie(movieName=movie)
             db.session.add(m)
             db.session.commit()
 
-        r = Review.query.filter_by(review=review,movie_id=b.ID).first()
+        r = Review.query.filter_by(review=review,movie_id=m.ID).first()
         if r:
-            print("Review exsits")
+            print("This review exsits already!")
             return redirect(url_for('see_all_reviews'))
         else:
-            r = Tweet(review=review,breed_id=b.ID)
+            r = Tweet(review=review, movie_id=m.ID)
             db.session.add(r)
             db.session.commit()
             return redirect(url_for('index'))
